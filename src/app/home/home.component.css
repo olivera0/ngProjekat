@@ -1,0 +1,76 @@
+/* Ukloni :ng-deep i koristite klase */
+.home-table {
+    font-family: Arial, Helvetica, sans-serif !important;
+    height: 500px;
+}
+
+.home-table th {
+    background-color: rgb(241, 190, 190);
+    font-weight: bold;
+}
+
+.home-table tr:nth-child(even) {
+    background-color: rgb(132, 132, 254);
+}
+
+/* Stilizacija za paginaciju */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 10px;
+    font-size: 16px;
+}
+
+.pagination-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.pagination-info {
+    font-size: 18px;
+}
+
+/* Crveni redovi za selektovani tag */
+.highlight {
+    background-color: rgba(255, 0, 0, 0.3) !important;
+}
+
+/* Stilizacija modala */
+.modal {
+    position: fixed;
+    top: 0;
+    left: -10;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    text-align: center;
+}
+
+
+
+ng-select .ng-dropdown-panel {
+    background-color: gray;
+    margin-left: -74px;
+    /* Postavi sivu pozadinu za dropdown listu */
+}
