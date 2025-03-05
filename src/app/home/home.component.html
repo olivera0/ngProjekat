@@ -1,39 +1,35 @@
+<input type="text" class="search" (input)="onSearch()" placeholder="Pretraga..." />
+
 <table class="home-table">
   <thead>
     <tr>
       <th>ID</th>
       <th>Title</th>
       <th>Body</th>
-      <th><div class="tag-select-container">
-        <ng-select 
-          [items]="tags" 
-          [(ngModel)]="selectedTag" 
-          placeholder="Odaberi tag: ">
-        </ng-select>
-      </div></th>
+      <th>
+        <div class="tag-select-container">
+          <ng-select 
+            [items]="tags" 
+            [(ngModel)]="selectedTag" 
+            placeholder="Odaberi tag: ">
+          </ng-select>
+        </div>
+      </th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let post of posts" 
         [class.highlight]="hasSelectedTag(post)" 
-        (click)="selectedPost = post">
+        (click)="onPostClick(post)"> <!-- IZMENJENO -->
       <td>{{ post.id }}</td>
       <td>{{ post.title }}</td>
       <td>{{ post.body }}</td>
-      <td>{{post.tags}}</td>
+      <td>{{ post.tags?.join(', ') }}</td>
     </tr>
   </tbody>
 </table>
 
-<!-- Modal za prikaz detalja posta -->
-<div class="modal" *ngIf="selectedPost">
-  <div class="modal-content">
-    <h2>{{ selectedPost.title }}</h2>
-    <p>{{ selectedPost.body }}</p>
-    <p><strong>Tags:</strong> {{ selectedPost.tags?.join(', ') }}</p>
-    <button (click)="selectedPost = null">Zatvori</button>
-  </div>
-</div>
+<!-- Uklonjen modal -->
 
 <!-- Dugmad za paginaciju -->
 <div class="pagination-container">

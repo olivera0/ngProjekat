@@ -1,46 +1,48 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http'; 
+import { PostService } from './servis/post.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls:['./home.component.css'],
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
   posts: any[] = [];
   trenutnaStr: number = 1;
-  searchText: string = ''; 
+  searchText: string = '';
   selectedTag: string = ''; // Dodajemo promenljivu za odabrani tag
 
   selectedPost: any = null;
   tags: string[] = ["history", "american", "crime", "magical", "french"]; // Lista tagova
 
-  constructor(private http: HttpClient) {}  
+  constructor(private postService: PostService, private router: Router) {}
 
   ngOnInit() {
-    this.getPosts();
+    this.loadPosts();
   }
 
-  getPosts() {
-    const limit = 10;
-    const skip = (this.trenutnaStr - 1) * limit;
-    const url = `https://dummyjson.com/posts/search?limit=${limit}&skip=${skip}&q=${this.searchText}`;
-
-    this.http.get<any>(url).subscribe(
+  loadPosts() {
+    this.postService.getPosts(this.trenutnaStr, this.searchText).subscribe(
       data => {
         this.posts = data.posts;
       }
     );
   }
 
+  onPostClick(post: any) {
+    this.postService.setCurrentPost(post); // Čuva objavu u servisu
+    this.router.navigate(['/post', post.id]); // Navigacija ka detaljima
+  }
+
   onPageChange(page: number) {
     this.trenutnaStr = page;
-    this.getPosts();
+    this.loadPosts();
   }
 
   onSearch() {
     this.trenutnaStr = 1;
-    this.getPosts();
+    this.loadPosts();
   }
 
   // Provera da li post sadrži selektovani tag

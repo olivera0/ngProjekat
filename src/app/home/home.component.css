@@ -1,7 +1,34 @@
-/* Ukloni :ng-deep i koristite klase */
+/* Zajednički dizajn za Home stranicu */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9; /* Svetla pozadina */
+}
+
+.search{
+    margin-top: 20px;
+    margin-left: 45%;
+    padding: 10px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+/* Tabela za prikaz objava */
 .home-table {
-    font-family: Arial, Helvetica, sans-serif !important;
-    height: 500px;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+}
+
+.home-table th, .home-table td {
+    padding: 12px 20px;
+    text-align: left;
 }
 
 .home-table th {
@@ -11,6 +38,11 @@
 
 .home-table tr:nth-child(even) {
     background-color: rgb(132, 132, 254);
+}
+
+/* Highlight za selektovane redove */
+.highlight {
+    background-color: rgba(255, 0, 0, 0.3);
 }
 
 /* Stilizacija za paginaciju */
@@ -41,16 +73,17 @@
     font-size: 18px;
 }
 
-/* Crveni redovi za selektovani tag */
-.highlight {
-    background-color: rgba(255, 0, 0, 0.3) !important;
+/* Stilizacija dropdown-a za tagove */
+ng-select .ng-dropdown-panel {
+    background-color: #f1f1f1;
+    margin-left: -74px;
 }
 
-/* Stilizacija modala */
+/* Modal stilizacija (ako je potrebno za post-details) */
 .modal {
     position: fixed;
     top: 0;
-    left: -10;
+    left: 0;
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
@@ -65,12 +98,4 @@
     border-radius: 10px;
     width: 50%;
     text-align: center;
-}
-
-
-
-ng-select .ng-dropdown-panel {
-    background-color: gray;
-    margin-left: -74px;
-    /* Postavi sivu pozadinu za dropdown listu */
 }
