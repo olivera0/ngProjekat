@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { PostDetailsComponent } from './home/post-details/post-details.component';
+import { AuthService } from './home/servis/auth.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { PostDetailsComponent } from './home/post-details/post-details.component
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

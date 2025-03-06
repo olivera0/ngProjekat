@@ -1,5 +1,7 @@
-<input type="text" class="search" (input)="onSearch()" placeholder="Pretraga..." />
+<input type="text" class="search" [(ngModel)]="searchText" (input)="onSearch()" placeholder="Search..." />
 
+<h2>Dobrodosao, {{username}}</h2>
+<button (click)="logout()">Logout</button>
 <table class="home-table">
   <thead>
     <tr>
@@ -11,7 +13,7 @@
           <ng-select 
             [items]="tags" 
             [(ngModel)]="selectedTag" 
-            placeholder="Odaberi tag: ">
+            placeholder="Choose tag: ">
           </ng-select>
         </div>
       </th>
@@ -20,7 +22,7 @@
   <tbody>
     <tr *ngFor="let post of posts" 
         [class.highlight]="hasSelectedTag(post)" 
-        (click)="onPostClick(post)"> <!-- IZMENJENO -->
+        (click)="onPostClick(post)">
       <td>{{ post.id }}</td>
       <td>{{ post.title }}</td>
       <td>{{ post.body }}</td>
@@ -29,9 +31,6 @@
   </tbody>
 </table>
 
-<!-- Uklonjen modal -->
-
-<!-- Dugmad za paginaciju -->
 <div class="pagination-container">
   <button (click)="onPageChange(trenutnaStr - 1)" [disabled]="trenutnaStr === 1">Previous</button>
   <span>{{ trenutnaStr }}</span>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';  
-import { IUserCredentials } from './user/user.module'; 
+import { Router } from '@angular/router';
+import { IUserCredentials } from './user/user.module';
 
 @Component({
   selector: 'app-login',
@@ -9,18 +9,30 @@ import { IUserCredentials } from './user/user.module';
 })
 export class LoginComponent {
   credentials: IUserCredentials = { username: '', password: '' };
+  rememberMe: boolean = false;
 
   username = 'test';
   password = 'test123';
 
-  constructor(private router: Router) {} 
+  constructor(private router: Router) { }
+
+  ngOnInit() {
+    if (localStorage.getItem('user') || sessionStorage.getItem('user')) {
+      this.router.navigateByUrl('/home');
+    }
+  }
+
   onSubmit() {
-    const username = this.credentials.username.trim().toLowerCase();  
-    const password = this.credentials.password.trim().toLowerCase();  
+    const username = this.credentials.username.trim().toLowerCase();
+    const password = this.credentials.password.trim().toLowerCase();
 
     if (username === 'test' && password === 'test123') {
-      console.log(' home...');
-      this.router.navigateByUrl('/home');  
+      if (this.rememberMe) {
+        localStorage.setItem('user', username);
+      } else {
+        sessionStorage.setItem('user', username);
+      }
+      this.router.navigateByUrl('/home');
     } else {
       alert('Pogrešan username ili password!');
     }
